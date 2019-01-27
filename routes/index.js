@@ -5,7 +5,7 @@ const checker = require('../libs/checker');
 
 router.post('/complexity', function (req, res) {
   // Split sentences into words
-  const words = req.body.lexic.split(' ');
+  const words = req.body.text.split(' ');
   // Validate text length
   if (words.length < 100) {
     res.status(500).send({
@@ -23,7 +23,7 @@ router.post('/complexity', function (req, res) {
 
   // Calculate sentences density
   if (req.query.mode === 'verbose') {
-    const sentences = req.body.lexic.split('.');
+    const sentences = req.body.text.split('.');
     const results = sentences.map(sentence => {
       const words = sentence.split(' ');
       return checker.lexicalDensity(words);

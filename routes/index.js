@@ -20,6 +20,32 @@ router.post('/complexity', function (req, res) {
       }
     })
   }
+
+  // Calculate sentences density
+  if (req.query.mode === 'verbose') {
+    const sentences = req.body.lexic.split('.');
+    const results = sentences.map(sentence => {
+      const words = sentence.split(' ');
+      return checker.lexicalDensity(words);
+    });
+    const index = results.indexOf("NaN");
+    if (index > -1) {
+      results.splice(index, 1);
+    }
+    res.send({
+      data: {
+        sentence_ld: results,
+        overall_ld: checker.lexicalDensity(words)
+      }
+    })
+  } else {
+    const result = checker.lexicalDensity(words);
+    res.send({
+      data: {
+        overall_ld: result
+      }
+    })
+  }
 })
 
 module.exports = router;

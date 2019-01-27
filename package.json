@@ -1,5 +1,7 @@
 {
   "name": "lexicaldensity",
+  "author": "Anouar Kacem",
+  "description": "VAI Developer Test",
   "version": "0.0.0",
   "private": true,
   "scripts": {

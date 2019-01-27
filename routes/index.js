@@ -48,4 +48,12 @@ router.post('/complexity', function (req, res) {
   }
 })
 
+router.post('/words', function (req, res) {
+  const mongo = require('../libs/mongo');
+  mongo.insert(req.body.word, (err, result) => {
+    if (err) res.status(500).send(err);
+    res.send(result);
+  });
+})
+
 module.exports = router;
